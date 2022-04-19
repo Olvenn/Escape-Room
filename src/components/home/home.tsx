@@ -3,7 +3,7 @@ import {
   PageTitle,
   PageHeading,
   PageSubtext,
-} from 'components/common/common';
+} from '../common/common';
 import { QuestsCatalog } from './components/components';
 import * as S from './home.styled';
 
