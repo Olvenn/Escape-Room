@@ -2,6 +2,7 @@ import React from 'react';
 import { MainLayout, PageTitle, PageSubtext } from '../common/common';
 import contactsMap from '../../assets/img/contacts-map.jpg';
 import * as S from './contacts.styled';
+import Card from './card/card';
 
 const Contacts = () => (
   <MainLayout>
@@ -41,14 +42,15 @@ const Contacts = () => (
             </S.ContactValue>
           </S.ContactsList>
 
-          <S.ContactsMap>
+          {/* <S.ContactsMap>
             <S.ContactsMapImage
               src={contactsMap}
               alt="мы находимся по адресу Санкт-Петербург, Набережная реки Карповка, д 5"
               width="649"
               height="336"
             />
-          </S.ContactsMap>
+          </S.ContactsMap> */}
+          <Card />
         </S.Contacts>
       </S.ContentWrapper>
     </S.Main>
