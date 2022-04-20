@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import HistoryRouter from './components/history-route/history-route';
 import browserHistory from './browser-history';
 import { store } from './store';
-import { fetchOffersAction } from './store/api-actions';
+import { fetchQuestsAction } from './store/api-actions';
 
-store.dispatch(fetchOffersAction());
+store.dispatch(fetchQuestsAction());
 
 ReactDOM.render(
   <React.StrictMode>

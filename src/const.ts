@@ -6,7 +6,7 @@ import iconMystic from './assets/img/icon-mystic.svg';
 import iconDetective from './assets/img/icon-detective.svg';
 import iconScifi from './assets/img/icon-scifi.svg';
 
-export const ratings: { icon: string, name: string }[] = [
+export const categories: { icon: string, name: string }[] = [
   { 'icon': iiconAllQuests, 'name': 'Все квесты' },
   { 'icon': iconAdventures, 'name': 'Приключения' },
   { 'icon': iconHorrors, 'name': 'Ужасы' },
@@ -26,7 +26,7 @@ export const ratings: { icon: string, name: string }[] = [
 
 export enum AppRoute {
   Root = '/',
-  Quest = '/quest',
+  Quest = '/quest/:id',
   Сontacts = '/contacts',
   NotFound = '/not-found',
 }
@@ -38,7 +38,7 @@ export enum HTTP_CODE {
 }
 
 export enum NameSpace {
-  Offers = 'OFFERS',
+  Quests = 'QUESTS',
   User = 'USER',
   Main = 'MAIN',
 }
@@ -46,19 +46,6 @@ export enum NameSpace {
 export const TIMEOUT_SHOW_ERROR = 2000;
 
 export enum APIRoute {
-  Offer = '/quests/',
-  Offers = '/quests',
+  Quest = '/quests',
+  Quests = '/quests',
 }
-
-
-export const cities: { [index: string]: string } = {
-  Paris: 'Paris',
-  Cologne: 'Cologne',
-  Brussels: 'Brussels',
-  Amsterdam: 'Amsterdam',
-  Hamburg: 'Hamburg',
-  Dusseldorf: 'Dusseldorf',
-};
-
-
-

@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state.js';
 import { AxiosInstance } from 'axios';
-import { Offer } from '../types/types';
+import { Quest } from '../types/types';
 import { setError, redirectToRoute } from './action';
 import { APIRoute, TIMEOUT_SHOW_ERROR, AppRoute } from '../const';
 import { handleError } from '../services/handle-error';
-import { loadOffers } from './reducers/offers';
+import { loadQuests, loadQuest } from './reducers/quests';
 import { store } from '../store';
 
 
@@ -19,23 +19,40 @@ export const clearErrorAction = createAsyncThunk(
   },
 );
 
-
-export const fetchOffersAction = createAsyncThunk<void, undefined, {
+export const fetchQuestsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
-  'data/fetchOffers',
+  'data/fetchQuests',
   async (_arg, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.get<Offer[]>(APIRoute.Offers);
-      dispatch(loadOffers(data));
-      console.log(data);
+      const { data } = await api.get<Quest[]>(APIRoute.Quests);
+      dispatch(loadQuests(data));
+      // console.log(data);
       dispatch(setError(''));
     } catch (error) {
       dispatch(setError('Something was wrong. Try it more later.'));
-      dispatch(loadOffers([]));
-      console.log('data');
+      dispatch(loadQuests([]));
+      // console.log('data');
+      handleError(error);
+    }
+  },
+);
+
+export const fetchQuestAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/loadOffer',
+  async (id: number, { dispatch, extra: api }) => {
+    try {
+      const { data } = await api.get<Quest>(`${APIRoute.Quest}/${id}`);
+      dispatch(loadQuest(data));
+      // console.log(data);
+      console.log("data");
+    } catch (error) {
       handleError(error);
     }
   },

@@ -1,9 +1,9 @@
 import { NameSpace } from '../../const';
 import { State } from '../../types/state';
-import { Offer } from '../../types/types';
+import { Quest } from '../../types/types';
 
-export const getOffers = (state: State): Offer[] => state[NameSpace.Offers].offers;
+export const getQuests = (state: State): Quest[] => state[NameSpace.Quests].quests;
 
-// export const getIsLoadingOffers = (state: State): boolean => state[NameSpace.Offers].isLoading;
+// export const getIsLoadingQuests = (state: State): boolean => state[NameSpace.Quests].isLoading;
 
 export const getError = (state: State): string => state[NameSpace.Main].error;
