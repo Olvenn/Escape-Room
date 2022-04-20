@@ -200,6 +200,8 @@ const QuestFeatureItem = styled.li`
   }
 `;
 
+const Image = styled.img``;
+
 export {
   Tabs,
   TabItem,
@@ -214,4 +216,5 @@ export {
   QuestImage,
   QuestFeatures,
   QuestFeatureItem,
+  Image,
 };
