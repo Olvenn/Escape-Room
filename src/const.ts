@@ -39,7 +39,7 @@ export enum HTTP_CODE {
 
 export enum NameSpace {
   Quests = 'QUESTS',
-  User = 'USER',
+  Booking = 'BOOKING',
   Main = 'MAIN',
 }
 
@@ -48,4 +48,5 @@ export const TIMEOUT_SHOW_ERROR = 2000;
 export enum APIRoute {
   Quest = '/quests',
   Quests = '/quests',
+  Orders = '/orders',
 }

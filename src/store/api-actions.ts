@@ -7,6 +7,8 @@ import { APIRoute, TIMEOUT_SHOW_ERROR, AppRoute } from '../const';
 import { handleError } from '../services/handle-error';
 import { loadQuests, loadQuest } from './reducers/quests';
 import { store } from '../store';
+import { BookingData } from '../types/state';
+import { api } from './index'
 
 
 export const clearErrorAction = createAsyncThunk(
@@ -57,6 +59,29 @@ export const fetchQuestAction = createAsyncThunk<void, number, {
     }
   },
 );
+
+
+export const bookingAction = createAsyncThunk<void, BookingData, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/booking',
+  // async (id: number, { dispatch, extra: api }) => {
+  async (order: BookingData, { dispatch, extra: api }) => {
+    try {
+
+      await api.post<BookingData>(APIRoute.Orders, order)
+      // toast.success(MESSAGE.success, theme);
+      console.log('sucsess');
+      console.log(order);
+    } catch (error) {
+      console.log(order);
+      console.log('error');
+
+
+    }
+  })
 
 // export const fetchCommentsAction = createAsyncThunk<void, number, {
 //   dispatch: AppDispatch,

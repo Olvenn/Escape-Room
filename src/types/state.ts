@@ -9,4 +9,16 @@ export type QuestsProcess = {
   quest: Quest | undefined,
 };
 
+export type BookingProcess = {
+  name: string,
+  peopleCount: number,
+  phone: string,
+  isLegal: boolean,
+}
 
+export type BookingData = {
+  name: string;
+  peopleCount: number,
+  phone: string,
+  isLegal: boolean,
+};
