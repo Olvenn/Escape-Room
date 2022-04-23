@@ -3,23 +3,14 @@ import { AppDispatch, State } from '../types/state.js';
 import { AxiosInstance } from 'axios';
 import { Quest } from '../types/types';
 import { setError, redirectToRoute } from './action';
-import { APIRoute, TIMEOUT_SHOW_ERROR, AppRoute } from '../const';
+import { APIRoute, AppRoute, Message } from '../const';
 import { handleError } from '../services/handle-error';
 import { loadQuests, loadQuest } from './reducers/quests';
 import { store } from '../store';
 import { BookingData } from '../types/state';
 import { api } from './index'
-
-
-export const clearErrorAction = createAsyncThunk(
-  'main/clearError',
-  () => {
-    setTimeout(
-      () => store.dispatch(setError('')),
-      TIMEOUT_SHOW_ERROR,
-    );
-  },
-);
+import { toast, ToastOptions } from 'react-toastify';
+import { setIsSending, setSuccessfully } from '../store/reducers/booking';
 
 export const fetchQuestsAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch,
@@ -31,13 +22,11 @@ export const fetchQuestsAction = createAsyncThunk<void, undefined, {
     try {
       const { data } = await api.get<Quest[]>(APIRoute.Quests);
       dispatch(loadQuests(data));
-      // console.log(data);
       dispatch(setError(''));
     } catch (error) {
-      dispatch(setError('Something was wrong. Try it more later.'));
       dispatch(loadQuests([]));
-      // console.log('data');
-      handleError(error);
+      toast.error(Message.OrderError);
+      // handleError(error);
     }
   },
 );
@@ -52,14 +41,11 @@ export const fetchQuestAction = createAsyncThunk<void, number, {
     try {
       const { data } = await api.get<Quest>(`${APIRoute.Quest}/${id}`);
       dispatch(loadQuest(data));
-      // console.log(data);
-      console.log("data");
     } catch (error) {
-      handleError(error);
+      handleError(Message.Problem);
     }
   },
 );
-
 
 export const bookingAction = createAsyncThunk<void, BookingData, {
   dispatch: AppDispatch,
@@ -67,19 +53,15 @@ export const bookingAction = createAsyncThunk<void, BookingData, {
   extra: AxiosInstance
 }>(
   'data/booking',
-  // async (id: number, { dispatch, extra: api }) => {
   async (order: BookingData, { dispatch, extra: api }) => {
     try {
 
       await api.post<BookingData>(APIRoute.Orders, order)
-      // toast.success(MESSAGE.success, theme);
-      console.log('sucsess');
-      console.log(order);
+      toast.info(Message.OrderSuccess);
+      dispatch(setSuccessfully(true));
     } catch (error) {
-      console.log(order);
-      console.log('error');
-
-
+      toast.error(Message.Problem);
+      dispatch(setIsSending(false));
     }
   })
 

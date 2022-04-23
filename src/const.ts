@@ -6,23 +6,14 @@ import iconMystic from './assets/img/icon-mystic.svg';
 import iconDetective from './assets/img/icon-detective.svg';
 import iconScifi from './assets/img/icon-scifi.svg';
 
-export const categories: { icon: string, name: string }[] = [
-  { 'icon': iiconAllQuests, 'name': 'Все квесты' },
-  { 'icon': iconAdventures, 'name': 'Приключения' },
-  { 'icon': iconHorrors, 'name': 'Ужасы' },
-  { 'icon': iconMystic, 'name': 'Детектив' },
-  { 'icon': iconDetective, 'name': 'Мистика' },
-  { 'icon': iconScifi, 'name': 'Sci-fi' },
+export const categories: { icon: string, name: string, type: string }[] = [
+  { 'icon': iiconAllQuests, 'name': 'Все квесты', 'type': 'all' },
+  { 'icon': iconAdventures, 'name': 'Приключения', 'type': 'adventures' },
+  { 'icon': iconHorrors, 'name': 'Ужасы', 'type': 'horror' },
+  { 'icon': iconMystic, 'name': 'Детектив', 'type': 'detective' },
+  { 'icon': iconDetective, 'name': 'Мистика', 'type': 'mystic' },
+  { 'icon': iconScifi, 'name': 'Sci-fi', 'type': 'sci-fi' },
 ];
-
-// export const Categories: { [index: string]: string } = {
-//   IconAllQuests: 'Все квесты',
-//   IconAdventures: 'Приключения',
-//   IconHorrors: 'Ужасы',
-//   IconDetective: 'Детектив',
-//   IconMystic: 'Мистика',
-//   IconScifi: 'Sci-fi',
-// }
 
 export enum AppRoute {
   Root = '/',
@@ -48,5 +39,13 @@ export const TIMEOUT_SHOW_ERROR = 2000;
 export enum APIRoute {
   Quest = '/quests',
   Quests = '/quests',
-  Orders = '/orders',
+  Orders = '/orders1',
 }
+
+export const Message = {
+  Problem: 'Что-то пошло не так. Перезагрузите страницу или попробуйте позже.',
+  OrderSuccess: 'Ваша заявка отправлена. Мы с Вами свяжемся в ближайшее время.',
+  OrderError: 'Данные не получены. Попробуйте позже.',
+};
+
+

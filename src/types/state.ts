@@ -7,6 +7,7 @@ export type AppDispatch = typeof store.dispatch;
 export type QuestsProcess = {
   quests: Quest[],
   quest: Quest | undefined,
+  isDataLoaded: boolean,
 };
 
 export type BookingProcess = {
@@ -14,6 +15,8 @@ export type BookingProcess = {
   peopleCount: number,
   phone: string,
   isLegal: boolean,
+  isSending: boolean,
+  isSuccess: boolean,
 }
 
 export type BookingData = {

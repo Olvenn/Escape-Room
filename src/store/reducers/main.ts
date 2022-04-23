@@ -8,6 +8,7 @@ type InitalState = {
 const initialState: InitalState = {
   error: '',
 };
+console.log('error', initialState.error);
 
 const main = createReducer(initialState, (builder) => {
   builder

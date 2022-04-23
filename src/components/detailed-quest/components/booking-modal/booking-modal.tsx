@@ -2,11 +2,13 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { useState } from 'react';
 import * as S from './booking-modal.styled';
 import { ReactComponent as IconClose } from '../../../../assets/img/icon-close.svg';
-import { getName } from '../../../../store/reducers/booking';
+import { getName, setIsSending, setSuccessfully } from '../../../../store/reducers/booking';
 import { BookingData } from '../../../../types/state';
 import { FormEvent } from 'react';
 import { bookingAction } from '../../../../store/api-actions';
 import { store } from '../../../../store/index'
+
+import { useEffect } from 'react';
 
 type BookingModalProps = {
   onCloseBtnClick: (item: boolean) => void,
@@ -18,6 +20,9 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
   const [phone, setPhone] = useState('');
   const [peopleCount, setPeople] = useState(0);
   const [isLegal, setisLegal] = useState(false);
+
+  const isLoading: boolean = useAppSelector((state) => state.BOOKING.isSending);
+  const isSuccess: boolean = useAppSelector((state) => state.BOOKING.isSuccess);
 
   const handleNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
@@ -53,6 +58,14 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
     });
   };
 
+  useEffect(()=>{
+    if(isSuccess === true) {
+      dispatch(setIsSending(true));
+      dispatch(setSuccessfully(false));
+      onCloseBtnClick(false);
+    }
+  }, [isSuccess]);
+
   return (
     <S.BlockLayer>
       <S.Modal>
@@ -77,6 +90,7 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
               required
               value={name}
               onChange={handleNameChange}
+              disabled={isLoading}
             />
           </S.BookingField>
           <S.BookingField>
@@ -91,6 +105,7 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
               required
               value={phone}
               onChange={handlePhoneChange}
+              disabled={isLoading}
             />
           </S.BookingField>
           <S.BookingField>
@@ -105,6 +120,7 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
               required
               value={peopleCount}
               onChange={handlePeopleChange}
+              disabled={isLoading}
             />
           </S.BookingField>
           <S.BookingSubmit type="submit">Отправить заявку</S.BookingSubmit>
@@ -115,6 +131,7 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
               name="booking-legal"
               required
               onChange={handleLegalChange}
+              disabled={isLoading}
             />
             <S.BookingCheckboxLabel
               className="checkbox-label"

@@ -5,15 +5,18 @@ import { ReactComponent as IconPerson } from '../../assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from '../../assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import { useParams } from 'react-router-dom';
 import { renameLevel } from '../../utils';
+import { setIsSending } from '../../store/reducers/booking';
 
 const DetailedQuest = () => {
+  const dispatch = useAppDispatch();
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
   const onBookingBtnClick = () => {
     setIsBookingModalOpened(true);
+    dispatch(setIsSending(false));
   };
 
   const { id } = useParams();
@@ -23,11 +26,14 @@ const DetailedQuest = () => {
   }
   const quest = (quests.filter((quest) => quest.id === +id))[0];
 
+console.log('aabcdefg'.slice(3));
+console.log(quest?.coverImg);
+
   return (
     <MainLayout>
       <S.Main>
         <S.PageImage
-          src={quest?.previewImg}
+          src={`../${quest?.coverImg}`}
           alt={`квест ${quest?.title}`}
           width="1366"
           height="768"

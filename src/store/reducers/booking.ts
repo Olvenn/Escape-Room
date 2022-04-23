@@ -7,10 +7,11 @@ const initialState: BookingProcess = {
   phone: '',
   peopleCount: 0,
   isLegal: false,
+  isSending: true,
+  isSuccess: false,
 };
 
-console.log(initialState);
-
+console.log(initialState.isSending);
 
 export const booking = createSlice({
   name: NameSpace.Booking,
@@ -19,6 +20,13 @@ export const booking = createSlice({
     getName: (state, action) => {
       state.name = action.payload;
     },
+    setIsSending: (state, action) => {
+      state.isSending = action.payload;
+    },
+    setSuccessfully: (state, action) => {
+      state.isSuccess = action.payload;
+    },
+
     // getPhone: (state, action) => {
     //   state.phone = action.payload;
     // },
@@ -31,4 +39,4 @@ export const booking = createSlice({
   },
 });
 
-export const { getName } = booking.actions;
+export const { getName, setIsSending, setSuccessfully } = booking.actions;

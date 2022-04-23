@@ -6,6 +6,7 @@ import { Quest } from '../../types/types';
 const initialState: QuestsProcess = {
   quest: undefined,
   quests: [],
+  isDataLoaded: false,
 };
 
 export const quests = createSlice({
@@ -14,6 +15,7 @@ export const quests = createSlice({
   reducers: {
     loadQuests: (state, action) => {
       state.quests = action.payload;
+      state.isDataLoaded = true;
     },
     loadQuest: (state, action) => {
       state.quest = action.payload;
