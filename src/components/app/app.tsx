@@ -5,13 +5,14 @@ import Contacts from '../contacts/contacts';
 import Home from '../home/home';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { AppRoute } from '../../const';
-import {ToastContainer} from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAppSelector } from '../../hooks';
-import {getIsDataLoaded } from '../../store/reducers/selectors';
+import { getIsDataLoaded } from '../../store/reducers/selectors';
 import { appTheme } from './common';
 import * as S from './app.styled';
 import LoadingScreen from '../common/loading-screen/loading-screen';
+import UnderConstruction from '../under-construction/under-construction'
 
 const App = () => {
   const isLoading = useAppSelector(getIsDataLoaded);
@@ -23,31 +24,50 @@ const App = () => {
   }
   return (
 
-  <ThemeProvider theme={appTheme}>
-    <S.GlobalStyle />
-    <ToastContainer />
-    <Routes>
-      <Route
-        path={AppRoute.Root}
-        element={
-          <Home />
-        }
-      />
-      <Route
-        path={AppRoute.Quest}
-        element={
-          <DetailedQuest />
-        }
-      />
-      <Route path={AppRoute.Сontacts}
-        element={<Contacts />}
-      />
-      <Route
-        path="*"
-        element={<NotFoundPage />}
-      />
-    </Routes>
-  </ThemeProvider>
-)};
+    <ThemeProvider theme={appTheme}>
+      <S.GlobalStyle />
+      <ToastContainer />
+      <Routes>
+        <Route
+          path={AppRoute.Root}
+          element={
+            <Home />
+          }
+        />
+        <Route
+          path={AppRoute.Quest}
+          element={
+            <DetailedQuest />
+          }
+        />
+        <Route path={AppRoute.Сontacts}
+          element={<Contacts />}
+        />
+        <Route
+          path={AppRoute.ForBeginners}
+          element={
+            <UnderConstruction />
+          }
+        />
+        <Route
+          path={AppRoute.Reviews}
+          element={
+            <UnderConstruction />
+          }
+        />
+        <Route
+          path={AppRoute.Stocks}
+          element={
+            <UnderConstruction />
+          }
+        />
+        <Route
+          path="*"
+          element={<NotFoundPage />}
+        />
+      </Routes>
+    </ThemeProvider>
+  )
+};
 
 export default App;

@@ -2,7 +2,7 @@ import { useRef, useEffect } from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import MARKER from '../../../assets/img/icon-location.svg';
+import MARKER from '../../../assets/img/mainIcon.svg';
 import * as S from '../contacts.styled';
 
 const Position = {
@@ -12,8 +12,8 @@ const Position = {
 
 const mainIcon = leaflet.icon({
   iconUrl: MARKER,
-  iconSize: [33, 42],
-  iconAnchor: [16.5, 42],
+  iconSize: [48, 61],
+  iconAnchor: [24, 42],
 });
 
 const ZOOM = 16;
@@ -43,7 +43,7 @@ const Card = () => {
         lng: Position.lng,
       }, { icon: mainIcon }).addTo(map);
     }
-    }, []);
+  }, []);
 
   return (
     <S.ContactsMap ref={mapRef}>

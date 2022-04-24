@@ -5,22 +5,9 @@ import RalewaySemiBoldWoff2 from '../../assets/fonts/raleway-semibold.woff2';
 import RalewayBoldWoff2 from '../../assets/fonts/raleway-bold.woff2';
 import RalewayExtraBoldWoff2 from '../../assets/fonts/raleway-extrabold.woff2';
 import RalewayBlackWoff2 from '../../assets/fonts/raleway-black.woff2';
+import { DefaultThemeType } from '../../types/types'
 
-interface IGlobalStyle {
-  theme: {
-    font: { base: string };
-    color: {
-      whisper: string;
-      nero: string;
-      black: string;
-      white: string;
-    };
-  };
-}
-
-
-
-const GlobalStyle = createGlobalStyle<IGlobalStyle>`
+const GlobalStyle = createGlobalStyle <DefaultThemeType>`
   @font-face {
     font-family: 'Raleway';
     font-style: normal;

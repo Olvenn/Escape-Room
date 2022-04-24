@@ -83,8 +83,6 @@ const InnerThree = styled.div
     }
   }
 `
-
-
   export {
     Main,
     Loader,

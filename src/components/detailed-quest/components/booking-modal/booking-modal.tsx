@@ -12,9 +12,10 @@ import { useEffect } from 'react';
 
 type BookingModalProps = {
   onCloseBtnClick: (item: boolean) => void,
+  peoplePossible: number[];
 }
 
-const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
+const BookingModal = ({ onCloseBtnClick, peoplePossible }: BookingModalProps) => {
   const dispatch = useAppDispatch();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -51,9 +52,9 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
     evt.preventDefault();
 
     onSubmit({
-      name: name,
-      peopleCount: peopleCount,
-      phone: phone,
+      name,
+      peopleCount,
+      phone,
       isLegal: !isLegal,
     });
   };
@@ -121,6 +122,8 @@ const BookingModal = ({ onCloseBtnClick }: BookingModalProps) => {
               value={peopleCount}
               onChange={handlePeopleChange}
               disabled={isLoading}
+              min={peoplePossible[0]}
+              max={peoplePossible[1]}
             />
           </S.BookingField>
           <S.BookingSubmit type="submit">Отправить заявку</S.BookingSubmit>

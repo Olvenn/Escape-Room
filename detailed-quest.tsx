@@ -5,22 +5,16 @@ import { ReactComponent as IconPerson } from '../../assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from '../../assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { useParams } from 'react-router-dom';
-import { renameLevel, renameGenre } from '../../utils';
-import { setIsSending } from '../../store/reducers/booking';
-import { redirectToRoute } from '../../store/action';
-import { AppRoute } from '../../const';
-import { useNavigate } from 'react-router-dom';
-import NotFoundPage from '../not-found-page/not-found-page';
+import { renameLevel } from '../../utils';
+import { lstatSync } from 'fs';
 
 const DetailedQuest = () => {
-  const dispatch = useAppDispatch();
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
   const onBookingBtnClick = () => {
     setIsBookingModalOpened(true);
-    dispatch(setIsSending(false));
   };
 
   const { id } = useParams();
@@ -28,16 +22,7 @@ const DetailedQuest = () => {
   if (!id) {
     return <div></div>;
   }
-
   const quest = (quests.filter((quest) => quest.id === +id))[0];
-
-  if (!quest?.id) {
-    return (
-      <NotFoundPage />
-    );
-  }
-
-  console.log(quest?.type);
 
   return (
     <MainLayout>
@@ -51,7 +36,7 @@ const DetailedQuest = () => {
         <S.PageContentWrapper>
           <S.PageHeading>
             <S.PageTitle>{quest?.title}</S.PageTitle>
-            <S.PageSubtitle>{renameGenre(quest?.type)}</S.PageSubtitle>
+            <S.PageSubtitle>{quest?.type}</S.PageSubtitle>
           </S.PageHeading>
 
           <S.PageDescription>
@@ -80,7 +65,7 @@ const DetailedQuest = () => {
           </S.PageDescription>
         </S.PageContentWrapper>
 
-        {isBookingModalOpened && <BookingModal onCloseBtnClick={setIsBookingModalOpened} peoplePossible={quest.peopleCount} />}
+        {isBookingModalOpened && <BookingModal onCloseBtnClick={setIsBookingModalOpened} />}
       </S.Main>
     </MainLayout>
   );

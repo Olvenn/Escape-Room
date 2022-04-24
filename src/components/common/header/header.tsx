@@ -18,15 +18,15 @@ const Header = () => (
           </S.LinkItem>
 
           <S.LinkItem>
-            <S.Link to="#">Новичкам</S.Link>
+            <S.Link to="/for-beginners">Новичкам</S.Link>
           </S.LinkItem>
 
           <S.LinkItem>
-            <S.Link to="#">Отзывы</S.Link>
+            <S.Link to="/reviews">Отзывы</S.Link>
           </S.LinkItem>
 
           <S.LinkItem>
-            <S.Link to="#">Акции</S.Link>
+            <S.Link to="/stocks">Акции</S.Link>
           </S.LinkItem>
 
           <S.LinkItem>

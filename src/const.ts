@@ -20,6 +20,9 @@ export enum AppRoute {
   Quest = '/quest/:id',
   Сontacts = '/contacts',
   NotFound = '/not-found',
+  ForBeginners = '/for-beginners',
+  Reviews = '/reviews',
+  Stocks = '/stocks',
 }
 
 export enum HTTP_CODE {
@@ -39,7 +42,7 @@ export const TIMEOUT_SHOW_ERROR = 2000;
 export enum APIRoute {
   Quest = '/quests',
   Quests = '/quests',
-  Orders = '/orders1',
+  Orders = '/orders',
 }
 
 export const Message = {
