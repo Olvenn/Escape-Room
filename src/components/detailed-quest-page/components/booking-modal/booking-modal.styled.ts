@@ -30,6 +30,7 @@ const Modal = styled.section`
   border-radius: 3px;
 `;
 
+
 const ModalCloseBtn = styled.button`
   position: absolute;
   top: 29px;
@@ -115,7 +116,7 @@ const BookingInput = styled.input`
   }
 `;
 
-const BookingSubmit = styled(Button)`
+const BookingSubmit = styled(Button).attrs({ type: 'submit' })`
   align-self: center;
   margin-top: 55px;
   margin-bottom: 21px;
@@ -225,5 +226,5 @@ export {
   BookingCheckboxLabel,
   BookingCheckboxInput,
   BookingCheckboxText,
-  BookingLegalLink,
+  BookingLegalLink
 };

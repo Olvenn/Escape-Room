@@ -216,5 +216,5 @@ export {
   QuestImage,
   QuestFeatures,
   QuestFeatureItem,
-  Image,
+  Image
 };

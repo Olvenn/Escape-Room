@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { PageHeading as Heading } from '../common/common';
-import contactsBg from '../../assets/img/contacts-bg.jpg';
+import { PageHeading as Heading } from '../../common/common';
+import contactsBg from '../../../assets/img/contacts-bg.jpg';
 
 const Main = styled.main`
   display: flex;
@@ -72,14 +72,6 @@ const ContactAddress = styled.address`
 
 const ContactLink = styled.a``;
 
-const ContactsMap = styled.div`
-  position: relative;
-  display: flex;
-  width: 649px;
-  height: 336px;
-  margin-left: auto;
-`;
-
 const ContactsMapImage = styled.img`
   position: absolute;
   top: 0;
@@ -97,6 +89,5 @@ export {
   ContactValue,
   ContactAddress,
   ContactLink,
-  ContactsMap,
-  ContactsMapImage,
+  ContactsMapImage
 };

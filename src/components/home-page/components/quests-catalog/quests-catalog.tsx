@@ -4,13 +4,12 @@ import * as S from './quests-catalog.styled';
 import { categories } from '../../../../const';
 import { useAppSelector } from '../../../../hooks';
 import { renameLevel } from '../../../../utils';
-import { store } from '../../../../store';
-import { fetchQuestAction } from '../../../../store/api-actions';
 import { useState } from 'react';
-import NoQuests from '../no-quests/no-quests'
+import NoQuests from '../no-quests/no-quests';
+import { getQuests } from '../../../../store/reducers/selectors';
 
-const QuestsCatalog = () => {
-  const rawQuests = useAppSelector((state) => state.QUESTS.quests);
+const QuestsCatalog = (): JSX.Element => {
+  const rawQuests = useAppSelector(getQuests);
   const [type, setType] = useState('all');
   const handleTypeClick = (type: string) => setType(type);
   const quests = type === 'all' ? rawQuests : rawQuests.filter((quest) => quest.type === type);
@@ -37,9 +36,7 @@ const QuestsCatalog = () => {
             (quest) => {
               return (
                 <S.QuestItem key={quest.id}>
-                  <S.QuestItemLink onClick={() => {
-                    store.dispatch(fetchQuestAction(quest.id));
-                  }} to={`/quest/${quest.id} `} >
+                  <S.QuestItemLink to={`/quest/${quest.id} `} >
                     <S.Quest>
                       <S.QuestImage
                         src={quest.previewImg}

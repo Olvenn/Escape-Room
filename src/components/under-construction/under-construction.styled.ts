@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { Link as RouterLink } from '../common/common';
 import { Container } from '../common/common';
 import { Button } from '../common/common';
@@ -50,21 +50,22 @@ const Title = styled.h1`
   mardin-bottom: 50px;
 `;
 
-const Wrap = styled.section
-  `display: flex;
+const Wrap = styled.section`
+  display: flex;
   flex-direction: column;
   justify-content: center;
 
   align-items: center;
-  height: 100vh;`
-  ;
+  height: 100vh;
+`;
 
 const Image = styled.img`
   text-alin: center`;
 
-const Text = styled.div
-  `font-size: 50px
-  margin-top: 50px`;
+const Text = styled.div`
+  font-size: 50px
+  margin-top: 50px
+`;
 
 const Link = styled(RouterLink)`
   @media (max-width: 1300px) {
@@ -85,7 +86,7 @@ export {
   Text,
   Link,
   PageText,
-  QuestBookingBtn,
+  QuestBookingBtn
 };
 
 

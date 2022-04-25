@@ -11,32 +11,17 @@ const initialState: BookingProcess = {
   isSuccess: false,
 };
 
-console.log(initialState.isSending);
-
 export const booking = createSlice({
   name: NameSpace.Booking,
   initialState,
   reducers: {
-    getName: (state, action) => {
-      state.name = action.payload;
-    },
     setIsSending: (state, action) => {
       state.isSending = action.payload;
     },
     setSuccessfully: (state, action) => {
       state.isSuccess = action.payload;
     },
-
-    // getPhone: (state, action) => {
-    //   state.phone = action.payload;
-    // },
-    // getPeople: (state, action) => {
-    //   state.people = action.payload;
-    // },
-    // isChecked: (state, action) => {
-    //   state.isChecked = action.payload;
-    // },
   },
 });
 
-export const { getName, setIsSending, setSuccessfully } = booking.actions;
+export const { setIsSending, setSuccessfully } = booking.actions;

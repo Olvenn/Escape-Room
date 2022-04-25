@@ -1,8 +1,7 @@
-import React from 'react';
 import logo from '../../../assets/img/logo.svg';
 import * as S from './header.styled';
 
-const Header = () => (
+const Header = (): JSX.Element => (
   <S.StyledHeader>
     <S.HeaderWrapper>
       <S.Logo>
@@ -16,19 +15,15 @@ const Header = () => (
               Квесты
             </S.Link>
           </S.LinkItem>
-
           <S.LinkItem>
             <S.Link to="/for-beginners">Новичкам</S.Link>
           </S.LinkItem>
-
           <S.LinkItem>
             <S.Link to="/reviews">Отзывы</S.Link>
           </S.LinkItem>
-
           <S.LinkItem>
             <S.Link to="/stocks">Акции</S.Link>
           </S.LinkItem>
-
           <S.LinkItem>
             <S.Link to="/contacts">Контакты</S.Link>
           </S.LinkItem>

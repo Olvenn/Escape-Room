@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Container, Link as RouterLink } from '../../common/common';
+import { Link as RouterLink } from '../../common/common';
 
 const Logo = styled.a`
   margin-right: 250px;
@@ -46,5 +46,5 @@ export {
   Logo,
   Image,
   LogoLink,
-  Link,
+  Link
 };

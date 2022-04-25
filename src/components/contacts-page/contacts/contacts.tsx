@@ -1,10 +1,8 @@
-import React from 'react';
-import { MainLayout, PageTitle, PageSubtext } from '../common/common';
-import contactsMap from '../../assets/img/contacts-map.jpg';
+import { MainLayout, PageTitle, PageSubtext } from '../../common/common';
 import * as S from './contacts.styled';
-import Card from './card/card';
+import Card from '../../contacts-page/card/card';
 
-const Contacts = () => (
+const Contacts = (): JSX.Element => (
   <MainLayout>
     <S.Main>
       <S.ContentWrapper>
@@ -41,20 +39,11 @@ const Contacts = () => (
               </S.ContactLink>
             </S.ContactValue>
           </S.ContactsList>
-
-          {/* <S.ContactsMap>
-            <S.ContactsMapImage
-              src={contactsMap}
-              alt="мы находимся по адресу Санкт-Петербург, Набережная реки Карповка, д 5"
-              width="649"
-              height="336"
-            />
-          </S.ContactsMap> */}
           <Card />
         </S.Contacts>
       </S.ContentWrapper>
-    </S.Main>
-  </MainLayout>
+    </S.Main >
+  </MainLayout >
 );
 
 export default Contacts;

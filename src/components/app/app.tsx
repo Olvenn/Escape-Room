@@ -1,8 +1,8 @@
 import { ThemeProvider } from 'styled-components';
-import { Routes, Route, BrowserRouter } from '../common/common';
-import DetailedQuest from '../detailed-quest/detailed-quest';
-import Contacts from '../contacts/contacts';
-import Home from '../home/home';
+import { Routes, Route } from '../common/common';
+import DetailedQuest from '../detailed-quest-page/detailed-quest/detailed-quest';
+import Contacts from '../contacts-page/contacts/contacts';
+import Home from '../home-page/home/home';
 import NotFoundPage from '../not-found-page/not-found-page';
 import { AppRoute } from '../../const';
 import { ToastContainer } from 'react-toastify';
@@ -12,9 +12,9 @@ import { getIsDataLoaded } from '../../store/reducers/selectors';
 import { appTheme } from './common';
 import * as S from './app.styled';
 import LoadingScreen from '../common/loading-screen/loading-screen';
-import UnderConstruction from '../under-construction/under-construction'
+import UnderConstruction from '../under-construction/under-construction';
 
-const App = () => {
+const App = (): JSX.Element => {
   const isLoading = useAppSelector(getIsDataLoaded);
 
   if (!isLoading) {
@@ -67,7 +67,7 @@ const App = () => {
         />
       </Routes>
     </ThemeProvider>
-  )
+  );
 };
 
 export default App;

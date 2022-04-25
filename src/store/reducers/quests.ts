@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { QuestsProcess } from '../../types/state';
 import { NameSpace } from '../../const';
-import { Quest } from '../../types/types';
 
 const initialState: QuestsProcess = {
   quest: undefined,
   quests: [],
   isDataLoaded: false,
+  isSuccess: false,
 };
 
 export const quests = createSlice({
@@ -17,12 +17,10 @@ export const quests = createSlice({
       state.quests = action.payload;
       state.isDataLoaded = true;
     },
-    loadQuest: (state, action) => {
-      state.quest = action.payload;
+    setSuccessfullyData: (state, action) => {
+      state.isSuccess = action.payload;
     },
   },
 });
 
-console.log("initialState", initialState.quests);
-
-export const { loadQuests, loadQuest } = quests.actions;
+export const { loadQuests, setSuccessfullyData } = quests.actions;

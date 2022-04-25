@@ -1,6 +1,6 @@
 import * as S from './loading-screen.styled';
 
-const LoadingScreen = () => (
+const LoadingScreen = (): JSX.Element => (
 
   <S.Main>
     <S.Loader>

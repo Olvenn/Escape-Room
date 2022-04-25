@@ -113,5 +113,5 @@ export {
   Links,
   LinkItem,
   Link,
-  Phone,
+  Phone
 };

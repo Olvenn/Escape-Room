@@ -1,20 +1,18 @@
-import { useState, useEffect } from 'react';
-import { MainLayout } from '../common/common';
-import { ReactComponent as IconClock } from '../../assets/img/icon-clock.svg';
-import { ReactComponent as IconPerson } from '../../assets/img/icon-person.svg';
-import { ReactComponent as IconPuzzle } from '../../assets/img/icon-puzzle.svg';
+import { useState } from 'react';
+import { MainLayout } from '../../common/common';
+import { ReactComponent as IconClock } from '../../../assets/img/icon-clock.svg';
+import { ReactComponent as IconPerson } from '../../../assets/img/icon-person.svg';
+import { ReactComponent as IconPuzzle } from '../../../assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
-import { BookingModal } from './components/components';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { BookingModal } from '../components/components';
+import { useAppSelector, useAppDispatch } from '../../../hooks';
 import { useParams } from 'react-router-dom';
-import { renameLevel, renameGenre } from '../../utils';
-import { setIsSending } from '../../store/reducers/booking';
-import { redirectToRoute } from '../../store/action';
-import { AppRoute } from '../../const';
-import { useNavigate } from 'react-router-dom';
-import NotFoundPage from '../not-found-page/not-found-page';
+import { renameLevel, renameGenre } from '../../../utils';
+import { setIsSending } from '../../../store/reducers/booking';
+import NotFoundPage from '../../not-found-page/not-found-page';
+import { getQuests } from '../../../store/reducers/selectors';
 
-const DetailedQuest = () => {
+const DetailedQuest = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
 
@@ -24,9 +22,12 @@ const DetailedQuest = () => {
   };
 
   const { id } = useParams();
-  const quests = useAppSelector((state) => state.QUESTS.quests);
+  const quests = useAppSelector(getQuests);
+
   if (!id) {
-    return <div></div>;
+    return (
+      <NotFoundPage />
+    );
   }
 
   const quest = (quests.filter((quest) => quest.id === +id))[0];
@@ -36,8 +37,6 @@ const DetailedQuest = () => {
       <NotFoundPage />
     );
   }
-
-  console.log(quest?.type);
 
   return (
     <MainLayout>
@@ -82,7 +81,7 @@ const DetailedQuest = () => {
 
         {isBookingModalOpened && <BookingModal onCloseBtnClick={setIsBookingModalOpened} peoplePossible={quest.peopleCount} />}
       </S.Main>
-    </MainLayout>
+    </MainLayout >
   );
 };
 

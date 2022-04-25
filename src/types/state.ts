@@ -8,6 +8,7 @@ export type QuestsProcess = {
   quests: Quest[],
   quest: Quest | undefined,
   isDataLoaded: boolean,
+  isSuccess: boolean,
 };
 
 export type BookingProcess = {

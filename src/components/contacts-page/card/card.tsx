@@ -3,12 +3,14 @@ import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import MARKER from '../../../assets/img/mainIcon.svg';
-import * as S from '../contacts.styled';
+import * as S from './card.styled';
+
+const ZOOM = 16;
 
 const Position = {
   lat: 59.968137,
   lng: 30.316272,
-}
+};
 
 const mainIcon = leaflet.icon({
   iconUrl: MARKER,
@@ -16,9 +18,7 @@ const mainIcon = leaflet.icon({
   iconAnchor: [24, 42],
 });
 
-const ZOOM = 16;
-
-const Card = () => {
+const Card = (): JSX.Element => {
   const mapRef = useRef(null);
   useEffect(() => {
     if (mapRef && mapRef.current) {
@@ -36,7 +36,6 @@ const Card = () => {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         },
       ).addTo(map);
-
 
       L.marker({
         lat: Position.lat,

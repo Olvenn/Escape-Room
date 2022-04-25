@@ -1,7 +1,7 @@
 import logo from '../../../assets/img/logo.svg';
 import * as S from './logo.styled';
 
-const Logo = () => (
+const Logo = (): JSX.Element => (
   <S.Link to="/">
     <S.Logo>
       <S.Image src={logo} alt="Логотип Escape Room" width="134" height="50" />

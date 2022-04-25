@@ -2,42 +2,64 @@ import { useAppDispatch, useAppSelector } from '../../../../hooks';
 import { useState } from 'react';
 import * as S from './booking-modal.styled';
 import { ReactComponent as IconClose } from '../../../../assets/img/icon-close.svg';
-import { getName, setIsSending, setSuccessfully } from '../../../../store/reducers/booking';
+import { setIsSending, setSuccessfully } from '../../../../store/reducers/booking';
 import { BookingData } from '../../../../types/state';
 import { FormEvent } from 'react';
 import { bookingAction } from '../../../../store/api-actions';
-import { store } from '../../../../store/index'
-
 import { useEffect } from 'react';
+import { getIsSendingBooking, getIsSuccessBooking } from '../../../../store/reducers/selectors';
 
 type BookingModalProps = {
   onCloseBtnClick: (item: boolean) => void,
   peoplePossible: number[];
 }
 
-const BookingModal = ({ onCloseBtnClick, peoplePossible }: BookingModalProps) => {
+const PHONE_REGEXP = /^\d{10}$/;
+const NAME_REGEXP = /^[аА-яЯaA-zZ'][аА-яЯaA-zZ -' ]+[аА-яЯaA-zZ']?$/i;
+
+const BookingModal = ({ onCloseBtnClick, peoplePossible }: BookingModalProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [peopleCount, setPeople] = useState(0);
   const [isLegal, setisLegal] = useState(false);
 
-  const isLoading: boolean = useAppSelector((state) => state.BOOKING.isSending);
-  const isSuccess: boolean = useAppSelector((state) => state.BOOKING.isSuccess);
+  const isLoading: boolean = useAppSelector(getIsSendingBooking);
+  const isSuccess: boolean = useAppSelector(getIsSuccessBooking);
 
   const handleNameChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
     setName(evt.target.value);
+
+    if (!NAME_REGEXP.test(evt.target.value.toString())) {
+      evt.target.setCustomValidity('В имени могут быть только буквы.');
+      evt.target.reportValidity();
+    } else {
+      evt.target.setCustomValidity('');
+    }
   };
 
   const handlePhoneChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
     setPhone(evt.target.value);
+
+    if (!PHONE_REGEXP.test(evt.target.value)) {
+      evt.target.setCustomValidity('Не верный номер. Введите 10 цифр.');
+      evt.target.reportValidity();
+    } else {
+      evt.target.setCustomValidity('');
+    }
   };
 
   const handlePeopleChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     evt.preventDefault();
     setPeople(+evt.target.value);
+    if ((+evt.target.value < peoplePossible[0] || +evt.target.value > peoplePossible[1])) {
+      evt.target.setCustomValidity('Такое количество участников в этом квесте не предусмотрено.');
+      evt.target.reportValidity();
+    } else {
+      evt.target.setCustomValidity('');
+    }
   };
 
   const handleLegalChange = () => {
@@ -46,8 +68,8 @@ const BookingModal = ({ onCloseBtnClick, peoplePossible }: BookingModalProps) =>
 
   const onSubmit = (bookingData: BookingData) => {
     dispatch(bookingAction(bookingData));
-    dispatch(getName(bookingData));
   };
+
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
@@ -57,15 +79,16 @@ const BookingModal = ({ onCloseBtnClick, peoplePossible }: BookingModalProps) =>
       phone,
       isLegal: !isLegal,
     });
+
   };
 
-  useEffect(()=>{
-    if(isSuccess === true) {
+  useEffect(() => {
+    if (isSuccess === true) {
       dispatch(setIsSending(true));
       dispatch(setSuccessfully(false));
       onCloseBtnClick(false);
     }
-  }, [isSuccess]);
+  }, [isSuccess, dispatch, onCloseBtnClick]);
 
   return (
     <S.BlockLayer>
@@ -152,7 +175,7 @@ const BookingModal = ({ onCloseBtnClick, peoplePossible }: BookingModalProps) =>
         </S.BookingForm>
       </S.Modal>
     </S.BlockLayer>
-  )
+  );
 };
 
 export default BookingModal;

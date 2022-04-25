@@ -18,17 +18,3 @@ const NotFoundPage = (): JSX.Element => (
 );
 
 export default NotFoundPage;
-
-
-//   return (
-//       <main className="page__main">
-//         <section className="page__back">
-//           <div>
-//             <Logo />
-//           </div>
-//           <h1>404. Page not found</h1>
-//           {/* <a className="form__submit button" href="/">Back to main page</a> */}
-//         </section>
-//       </main>
-//   );
-// }

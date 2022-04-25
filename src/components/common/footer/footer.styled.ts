@@ -76,5 +76,5 @@ export {
   SocialLink,
   StyledInstagramIcon,
   StyledVkIcon,
-  HiddenText,
+  HiddenText
 };

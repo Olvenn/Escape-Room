@@ -1,16 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-const Main = styled.main
-  `background-image: radial-gradient(circle farthest-corner at center, #3C4B57 0%, #1C262B 100%);
+const Main = styled.main`
+  background-image: radial-gradient(circle farthest-corner at center, #3C4B57 0%, #1C262B 100%);
   color: white;
   background-color: black;
   font-size: 100px;
   width: 100vw;
-  height: 500vh`
-  ;
+  height: 500vh
+`;
 
-const Loader = styled.div
-`
+const Loader = styled.div`
   position: absolute;
   top: calc(50% - 32px);
   left: calc(50% - 32px);
@@ -18,11 +17,9 @@ const Loader = styled.div
   height: 100px;
   border-radius: 50%;
   perspective: 800px;
-`
-;
+`;
 
-const InnerOne = styled.div
-`
+const InnerOne = styled.div`
   position: absolute;
   box-sizing: border-box;
   width: 100%;
@@ -40,10 +37,9 @@ const InnerOne = styled.div
         transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
       }
     }
-`
+`;
 
-const InnerTwo = styled.div
-`
+const InnerTwo = styled.div`
   position: absolute;
   box-sizing: border-box;
   width: 100%;
@@ -61,9 +57,9 @@ const InnerTwo = styled.div
         transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
       }
     }
-`
-const InnerThree = styled.div
-`
+`;
+
+const InnerThree = styled.div`
   position: absolute;
   box-sizing: border-box;
   width: 100%;
@@ -82,12 +78,13 @@ const InnerThree = styled.div
       transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
     }
   }
-`
-  export {
-    Main,
-    Loader,
-    InnerOne,
-    InnerTwo,
-    InnerThree,
-  };
+`;
+
+export {
+  Main,
+  Loader,
+  InnerOne,
+  InnerTwo,
+  InnerThree
+};
 

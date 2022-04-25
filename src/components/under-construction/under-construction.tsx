@@ -1,10 +1,8 @@
 import {
   MainLayout,
-  PageHeading,
+  PageHeading
 } from '../common/common';
 import * as S from './under-construction.styled';
-import logo from '../../assets/img/logo.svg';
-
 
 const UnderConstruction = (): JSX.Element => (
 
@@ -19,9 +17,8 @@ const UnderConstruction = (): JSX.Element => (
           На главную
         </S.QuestBookingBtn>
       </S.Link>
-    </S.Main>s
+    </S.Main>
   </MainLayout>
 );
-
 
 export default UnderConstruction;

@@ -2,12 +2,12 @@ import {
   MainLayout,
   PageTitle,
   PageHeading,
-  PageSubtext,
-} from '../common/common';
-import { QuestsCatalog } from './components/components';
+  PageSubtext
+} from '../../common/common';
+import { QuestsCatalog } from '../components/components';
 import * as S from './home.styled';
 
-const HomePage = () => (
+const HomePage = (): JSX.Element => (
   <MainLayout>
     <S.Main forwardedAs="main">
       <PageHeading>
